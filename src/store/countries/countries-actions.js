@@ -8,7 +8,7 @@ export const setCountries = (countries) => ({
 })
 
 export const setLoading = () => ({
-  type: setLoading,
+  type: SET_LOADING,
 })
 
 export const setError = (err) => ({
