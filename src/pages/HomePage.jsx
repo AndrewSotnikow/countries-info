@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectAllCountries,
+  selectVisibleCountries,
   selectAllCountriesInfo,
 } from '../store/countries/countries-selectors'
 
@@ -12,11 +12,15 @@ import { useEffect } from 'react'
 import { List } from '../components/List'
 import { Card } from '../components/Card'
 import { Controls } from '../components/Controls'
+import { selectSearch } from '../store/controls/controls-selectors'
 
 export const HomePage = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const countries = useSelector(selectAllCountries)
+  const search = useSelector(selectSearch)
+  const countries = useSelector((state) =>
+    selectVisibleCountries(state, { search })
+  )
   const { status, error, qty } = useSelector(selectAllCountriesInfo)
 
   useEffect(() => {
