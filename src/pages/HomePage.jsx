@@ -1,27 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectVisibleCountries,
+  throttledSelectVisibleCountries,
   selectAllCountriesInfo,
 } from '../store/countries/countries-selectors'
 
 import { loadCountries } from '../store/countries/countries-actions'
 
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 
 import { List } from '../components/List'
 import { Card } from '../components/Card'
 import { Controls } from '../components/Controls'
 import { selectControls } from '../store/controls/controls-selectors'
 
-import throttle from 'lodash.throttle'
-
 export const HomePage = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { search, region } = useSelector(selectControls)
   const countries = useSelector((state) =>
-    selectVisibleCountries(state, { search, region })
+    throttledSelectVisibleCountries(state, { search, region })
   )
   const { status, error, qty } = useSelector(selectAllCountriesInfo)
 
