@@ -1,7 +1,18 @@
-# Countries Information App
+# Redux in depth - Countries Information App
 
-App displaying countries flags and actual information about population
+App displaying information about countries and their neighbors.
 
-##  Technologies 
+## Technologies
 
-JS, React, Redux
+- JS, React, Redux
+- react-icons
+- react-router-dom
+- react-select
+- styled-components
+- axios
+
+## Start project
+
+yarn install / npm i
+
+yarn start / npm run start

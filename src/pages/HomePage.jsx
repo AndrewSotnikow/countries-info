@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  throttledSelectVisibleCountries,
+  selectVisibleCountries,
   selectAllCountriesInfo,
 } from '../store/countries/countries-selectors'
 
@@ -18,8 +18,9 @@ export const HomePage = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { search, region } = useSelector(selectControls)
+
   const countries = useSelector((state) =>
-    throttledSelectVisibleCountries(state, { search, region })
+    selectVisibleCountries(state, { search, region })
   )
   const { status, error, qty } = useSelector(selectAllCountriesInfo)
 
