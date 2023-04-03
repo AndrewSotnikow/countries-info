@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { setRegion, selectRegion } from './controls-slice'
+import {useSelector, useDispatch} from 'react-redux'
 
-const useRegion = () => {
-  const region = useSelector(selectRegion)
-  const dispatch = useDispatch()
+import { selectRegion, setRegion } from './controls-slice';
 
-  const handlerSelect = (reg) => {
+
+export const useRegion = () => {
+  const dispatch = useDispatch();
+  const region = useSelector(selectRegion);
+
+  const handleSelect = (reg) => {
     dispatch(setRegion(reg?.value || ''))
   }
 
-  return [region, handlerSelect]
+  return [region, handleSelect];
 }
-
-export default useRegion
