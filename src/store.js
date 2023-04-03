@@ -2,18 +2,22 @@ import axios from 'axios'
 import { configureStore } from '@reduxjs/toolkit'
 
 import * as api from './config'
-import { themeReducer } from './store/theme/theme-reducer'
+import { themeReducer } from './features/theme/theme-slice'
+import { controlsReducer } from './features/controls/controls-slice'
 
 export const store = configureStore({
   reducer: {
-    reducer: themeReducer,
+    theme: themeReducer,
+    controls: controlsReducer,
   },
   devTools: true,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddlware) =>
+    getDefaultMiddlware({
       thunk: {
-        client: axios,
-        api,
+        extraArgument: {
+          client: axios,
+          api,
+        },
       },
       serializableCheck: false,
     }),
